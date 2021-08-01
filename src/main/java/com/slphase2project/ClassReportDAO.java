@@ -20,11 +20,10 @@ public class ClassReportDAO {
 	}  
 	
 	public static List<ClassReport> getAllRecords(int class_level){  
-	    List<ClassReport> list=new ArrayList<ClassReport>();  
-	      
+	    List<ClassReport> list=new ArrayList<ClassReport>();	      
 	    try{  
 	        Connection con=getConnection(); 
-	        String query = "call class_report(?)";
+	        String query = "call class_report(?)";  
             CallableStatement cb = con.prepareCall(query);
             cb.setInt(1, class_level);
             ResultSet rs = cb.executeQuery();
@@ -36,12 +35,39 @@ public class ClassReportDAO {
 	            u.setStudent_lname(rs.getString("student_lname"));
 	            u.setClass_level(rs.getInt("class_level"));
 	            u.setSection(rs.getString("section"));
-	            u.setTeach_fname(rs.getString("teach_fname"));
-	            u.setTeach_lname(rs.getString("teach_lname"));
-	            u.setSubject(rs.getString("subject"));
-	            list.add(u);  
-	            
+//	            u.setTeach_fname(rs.getString("teach_fname"));
+//	            u.setTeach_lname(rs.getString("teach_lname"));
+//	            u.setSubject(rs.getString("subject"));
+	            list.add(u);  	            
 	        }  
+	        
+	        
+	    }catch(Exception e){System.out.println(e);}  
+	    return list;  
+	}  
+	
+	public static List<ClassReport> getTeacherRecords(int class_level){  
+	    List<ClassReport> list=new ArrayList<ClassReport>();	      
+	    try{  
+	        Connection con=getConnection(); 
+	        String query = "call class_report_teachers(?)";  
+            CallableStatement cb = con.prepareCall(query);
+            cb.setInt(1, class_level);
+            ResultSet rs = cb.executeQuery();
+	         
+	        while(rs.next()){  
+	            ClassReport u = new ClassReport(); 
+//	            u.setStud_id(rs.getInt("stud_id"));
+//	            u.setStudent_fname(rs.getString("student_fname"));
+//	            u.setStudent_lname(rs.getString("student_lname"));
+	            u.setClass_level(rs.getInt("class_level"));
+	            u.setSection(rs.getString("section"));
+	            u.setTeach_fname(rs.getString("fname"));
+	            u.setTeach_lname(rs.getString("lname"));
+	            u.setSubject(rs.getString("name"));
+	            list.add(u);  	            
+	        }  
+	        	        
 	    }catch(Exception e){System.out.println(e);}  
 	    return list;  
 	}  

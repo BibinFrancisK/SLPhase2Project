@@ -1,5 +1,6 @@
 package com.slphase2project;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -48,6 +49,36 @@ public class ClasseDao {
 	    }catch(Exception e){System.out.println(e);}  
 	    return status;  
 	}  
+	
+	
+	public static int assignTeacher(Classes u){  
+	    int status=0;  
+	    try{  
+	        Connection con=getConnection();  
+	        PreparedStatement ps=con.prepareStatement(  
+	"update classes set teacher_id=? where class_id=?"); 
+	        
+	        //ps.setInt(1,u.getClass_level());  
+	       // ps.setString(2,u.getSection());  
+	        //ps.setInt(3,u.getSubject_id());  
+	        ps.setInt(1,u.getTeacher_id());
+	        ps.setInt(2,u.getClass_id());
+	        status=ps.executeUpdate(); 
+
+	    }catch(Exception e){System.out.println(e);}  
+	    return status;  
+	}  
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static int delete(Classes u){  
 	    int status=0;  
 	    try{  
@@ -64,20 +95,55 @@ public class ClasseDao {
 	      
 	    try{  
 	        Connection con=getConnection();  
-	        PreparedStatement ps=con.prepareStatement("select * from classes");  
-	        ResultSet rs=ps.executeQuery();  
+	        String query = "call classes_list()";
+            CallableStatement cb = con.prepareCall(query);
+	        ResultSet rs=cb.executeQuery();  
 	        while(rs.next()){  
 	            Classes u=new Classes(); 
+	            
 	            u.setClass_id(rs.getInt("class_id"));
 	            u.setClass_level(rs.getInt("class_level"));
 	            u.setSection(rs.getString("section"));
 	            u.setSubject_id(rs.getInt("subject_id"));
 	            u.setTeacher_id(rs.getInt("teacher_id"));
+	            
+	            u.setName(rs.getString("name"));
+	            u.setFname(rs.getString("fname"));
+	            u.setLname(rs.getString("lname"));
+	            
 	            list.add(u);  
 	        }  
 	    }catch(Exception e){System.out.println(e);}  
 	    return list;  
 	}  
+	
+	public static List<Classes> getUnassignedClasses(){  
+	    List<Classes> list=new ArrayList<Classes>();  
+	      
+	    try{  
+	        Connection con=getConnection();  
+	        String query = "call unassigned_classes_list()";
+            CallableStatement cb = con.prepareCall(query);
+	        ResultSet rs=cb.executeQuery();  
+	        while(rs.next()){  
+	            Classes u=new Classes(); 
+	            
+	            u.setClass_id(rs.getInt("class_id"));
+	            u.setClass_level(rs.getInt("class_level"));
+	            u.setSection(rs.getString("section"));
+	            u.setSubject_id(rs.getInt("subject_id"));
+	            u.setTeacher_id(rs.getInt("teacher_id"));
+	            
+	            u.setName(rs.getString("name"));
+	            u.setFname(rs.getString("fname"));
+	            u.setLname(rs.getString("lname"));
+	            
+	            list.add(u);  
+	        }  
+	    }catch(Exception e){System.out.println(e);}  
+	    return list;  
+	}  
+	
 	public static Classes getRecordById(int class_id){  
 	    Classes u=null;  
 	    try{  

@@ -4,8 +4,7 @@ public class Subject {
 	
 	private int course_id;
 	private String name;
-	private int class_id;
-	private int teacher_id;
+	private int status;
 	
 	public int getCourse_id() {
 		return course_id;
@@ -19,19 +18,12 @@ public class Subject {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getClass_id() {
-		return class_id;
+	public int getStatus() {
+		return status;
 	}
-	public void setClass_id(int class_id) {
-		this.class_id = class_id;
+	public void setStatus(int status) {
+		this.status = status;
 	}
-	public int getTeacher_id() {
-		return teacher_id;
-	}
-	public void setTeacher_id(int teacher_id) {
-		this.teacher_id = teacher_id;
-	}
-	
 	
 
 }

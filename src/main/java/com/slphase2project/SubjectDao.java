@@ -1,5 +1,6 @@
 package com.slphase2project;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,10 +23,9 @@ public class SubjectDao {
 	    try{  
 	        Connection con=getConnection();  
 	        PreparedStatement ps=con.prepareStatement(  
-	"insert into subjects(name, class_id, teacher_id) values(?,?,?)");  
+	"insert into subjects(name) values(?)");  
 	        ps.setString(1,u.getName());  
-	        ps.setInt(2,u.getClass_id());  
-	        ps.setInt(3,u.getTeacher_id());  
+	        //ps.setInt(2,u.getStatus());  
 	        status=ps.executeUpdate();  
 	    }catch(Exception e){System.out.println(e);}  
 	    return status;  
@@ -35,12 +35,11 @@ public class SubjectDao {
 	    try{  
 	        Connection con=getConnection();  
 	        PreparedStatement ps=con.prepareStatement(  
-	"update subjects set name=?,class_id=?,teacher_id=? where course_id=?"); 
+	"update subjects set name=? where course_id=?"); 
 	        
 	        ps.setString(1,u.getName());  
-	        ps.setInt(2,u.getClass_id());
-	        ps.setInt(3,u.getTeacher_id());
-	        ps.setInt(4,u.getCourse_id());  
+	        //ps.setInt(2,u.getStatus());
+	        ps.setInt(2,u.getCourse_id());
 	        status=ps.executeUpdate(); 
 
 	    }catch(Exception e){System.out.println(e);}  
@@ -50,7 +49,7 @@ public class SubjectDao {
 	    int status=0;  
 	    try{  
 	        Connection con=getConnection();  
-	        PreparedStatement ps=con.prepareStatement("delete from subjects where course_id=?");  
+	        PreparedStatement ps=con.prepareStatement("update subjects set status = 0 where course_id=?");  
 	        ps.setInt(1,u.getCourse_id());  
 	        status=ps.executeUpdate();  
 	    }catch(Exception e){System.out.println(e);}  
@@ -62,14 +61,15 @@ public class SubjectDao {
 	      
 	    try{  
 	        Connection con=getConnection();  
-	        PreparedStatement ps=con.prepareStatement("select * from subjects");  
-	        ResultSet rs=ps.executeQuery();  
+	        String query = "select * from subjects where status = 1;";
+	        CallableStatement cb = con.prepareCall(query);
+	      
+	        ResultSet rs=cb.executeQuery();  
 	        while(rs.next()){  
 	            Subject u=new Subject();  
 	            u.setCourse_id(rs.getInt("course_id"));  
 	            u.setName(rs.getString("name"));  
-	            u.setClass_id(rs.getInt("class_id"));   
-	            u.setTeacher_id(rs.getInt("teacher_id"));  
+	            //u.setStatus(rs.getInt("status"));            	           
 	            list.add(u);  
 	        }  
 	    }catch(Exception e){System.out.println(e);}  
@@ -86,9 +86,7 @@ public class SubjectDao {
 	            u=new Subject();  
 	            u.setCourse_id(rs.getInt("course_id"));  
 	            u.setName(rs.getString("name"));  
-	            u.setClass_id(rs.getInt("class_id"));    
-	            u.setTeacher_id(rs.getInt("teacher_id"));  
-	            
+	            //u.setStatus(rs.getInt("status"));                
 	        }  
 	    }catch(Exception e){System.out.println(e);}  
 	    return u;  

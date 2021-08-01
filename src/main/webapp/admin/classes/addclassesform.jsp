@@ -5,7 +5,7 @@
 <div class="main">
 <h1>Class Management</h1>  
 
-<jsp:include page="classesform.html"></jsp:include>  
+<jsp:include page="assignclassesform.html"></jsp:include>  
   
 </body>  
 </html>  

@@ -17,10 +17,6 @@ Subject u=SubjectDao.getRecordById(Integer.parseInt(course_id));
 <table class="table table-bordered table-striped" border="1" width="90%">  
 <tr><td>Course Name:</td><td>  
 <input type="text" name="name" value="<%= u.getName()%>" required="required"/></td></tr>
-<tr><td>Class ID:</td><td>   
-<input type="number" name="class_id" value="<%= u.getClass_id()%>" required="required"/></td></tr>
-<tr><td>Teacher ID:</td><td>
-<input type="number" name="teacher_id" value="<%= u.getTeacher_id()%>" required="required"/></td></tr>   
 <tr><td colspan="2"><input type="submit" class="btn btn-primary" value="Edit Subject"/></td></tr>  
 </table>  
 </form>  

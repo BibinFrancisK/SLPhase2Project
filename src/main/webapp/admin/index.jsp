@@ -69,15 +69,19 @@ ul{
   <br>
   <a href="stud/viewstudents.jsp">Student List</a>
   <a href="teac/viewteachers.jsp">Teacher List</a>
-  <a href="subj/viewsubjects.jsp">Subject List</a>
   <a href="classroom/viewclassroom.jsp">Classroom List</a>
-  <a href="classes/viewclasses.jsp">Class List</a>
-  	<ul>
-  	<li><a href="classes/viewclasses.jsp">Assign Classes</a></li>
-  	<li><a href="classes/viewclasses.jsp">Assign Teachers</a></li>
-  	</ul>
+  <a href="subj/viewsubjects.jsp">Subject List</a>
+  
+  	<br>
+  	<a href="classes/assignclasses.jsp">Assign Classes</a>
+  	<a href="classes/assignteachers.jsp">Assign Teachers</a>
+  	
+  	<br>
+  	<a href="classes/viewclasses.jsp">List of Classes</a>
+  	
 <!--    <a href="classes/viewclasses.jsp">Assign Classes</a>
   <a href="classes/viewclasses.jsp">Assign Teachers</a> -->
+  <br>
   <a href="cr/classreportindex.jsp">View Class Report</a>
   <br>
   <a href="../logout">LOGOUT</a>
@@ -85,7 +89,18 @@ ul{
 
   <div class="main">
   <h2>Learner's Academy</h2>
-  <p>Welcome to the Online Management System</p>  
+  <p>Welcome to the Online Management System</p> 
+  	<p><strong>Capabilities:</strong></p>
+  	<ol>
+  	<li>Add new student and manage the list of students</li> 
+  	<li>Add new teacher and manage the list of teachers</li>
+  	<li>Add new classroom and manage the list of classrooms</li>
+  	<li>Add new subject and manage the list of subjects</li>
+  	<li>Add new class for a subject</li>
+	<li>Assign a teacher to a class for the subject </li>
+	<li>View the class report (student details, class level, teacher details, subject etc.)</li>
+	</ol>
+  
   </div>
 
    

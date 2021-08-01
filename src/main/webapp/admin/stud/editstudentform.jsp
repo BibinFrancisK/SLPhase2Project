@@ -24,8 +24,6 @@ Student u=StudentDao.getRecordById(Integer.parseInt(stud_id));
 <input type="number" name="class_name" value="<%= u.getClass_name()%>" required="required"/></td></tr> 
 <tr><td>Section:</td><td>  
 <input type="text" name="section" value="<%= u.getSection()%>" maxlength="1" required="required"/></td></tr>
-<tr><td>Status:</td><td>   
-<input type="number" min="0" max="1" name="status" value="<%= u.getStatus()%>"/ required="required"></td></tr>   
 <tr><td colspan="2"><input type="submit" class="btn btn-primary" value="Edit Student"/></td></tr>  
 </table>  
 </form>  

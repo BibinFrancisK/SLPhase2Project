@@ -65,15 +65,18 @@ ul{
   <br>
   <a href="../stud/viewstudents.jsp">Student List</a>
   <a href="../teac/viewteachers.jsp">Teacher List</a>
-  <a href="../subj/viewsubjects.jsp">Subject List</a>
   <a href="../classroom/viewclassroom.jsp">Classroom List</a>
-  <a href="../classes/viewclasses.jsp">Class List</a> 
-  	<ul>
-  	<li><a href="../classes/viewclasses.jsp">Assign Classes</a></li>
-  	<li><a href="../classes/viewclasses.jsp">Assign Teachers</a></li>
-  	</ul> 
+  <a href="../subj/viewsubjects.jsp">Subject List</a>
+ 
+  	<br>
+  	<a href="../classes/assignclasses.jsp">Assign Classes</a>
+  	<a href="../classes/assignteachers.jsp">Assign Teachers</a>
+  	<br>
+  	 <a href="../classes/viewclasses.jsp">List of Classes</a> 
+  	
   <!--  <a href="../classes/viewclasses.jsp">Assign Classes</a>
   <a href="../classes/viewclasses.jsp">Assign Teachers</a> -->
+  <br>
   <a href="../cr/classreportindex.jsp">View Class Report</a>
   <br>
   <a href="../../logout">LOGOUT</a>

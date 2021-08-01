@@ -23,10 +23,10 @@ public class TeacherDao {
 	    try{  
 	        Connection con=getConnection();  
 	        PreparedStatement ps=con.prepareStatement(  
-	"insert into teachers(fname, lname, status) values(?,?,?)");  
+	"insert into teachers(fname, lname) values(?,?)");  
 	        ps.setString(1,u.getFname());  
 	        ps.setString(2,u.getLname());  
-	        ps.setInt(3,u.getStatus());  
+	        //ps.setInt(3,u.getStatus());  
 	        status=ps.executeUpdate();  
 	    }catch(Exception e){System.out.println(e);}  
 	    return status;  
@@ -36,12 +36,12 @@ public class TeacherDao {
 	    try{  
 	        Connection con=getConnection();  
 	        PreparedStatement ps=con.prepareStatement(  
-	"update teachers set fname=?,lname=?,status=? where teach_id=?"); 
+	"update teachers set fname=?,lname=? where teach_id=?"); 
 	        
 	        ps.setString(1,u.getFname());  
 	        ps.setString(2,u.getLname());
-	        ps.setInt(3,u.getStatus());
-	        ps.setInt(4,u.getTeach_id());  
+	        //ps.setInt(3,u.getStatus());
+	        ps.setInt(3,u.getTeach_id());  
 	        status=ps.executeUpdate(); 
 
 	    }catch(Exception e){System.out.println(e);}  
@@ -51,7 +51,7 @@ public class TeacherDao {
 	    int status=0;  
 	    try{  
 	        Connection con=getConnection();  
-	        PreparedStatement ps=con.prepareStatement("delete from teachers where teach_id=?");  
+	        PreparedStatement ps=con.prepareStatement("update teachers set status = 0 where teach_id=?");  
 	        ps.setInt(1,u.getTeach_id());  
 	        status=ps.executeUpdate();  
 	    }catch(Exception e){System.out.println(e);}  
@@ -63,14 +63,14 @@ public class TeacherDao {
 	      
 	    try{  
 	        Connection con=getConnection();  
-	        PreparedStatement ps=con.prepareStatement("select * from teachers");  
+	        PreparedStatement ps=con.prepareStatement("select * from teachers where status = 1");  
 	        ResultSet rs=ps.executeQuery();  
 	        while(rs.next()){  
 	            Teacher u=new Teacher();  
 	            u.setTeach_id(rs.getInt("teach_id"));  
 	            u.setFname(rs.getString("fname"));  
 	            u.setLname(rs.getString("lname"));   
-	            u.setStatus(rs.getInt("status"));  
+	            //u.setStatus(rs.getInt("status"));  
 	            list.add(u);  
 	        }  
 	    }catch(Exception e){System.out.println(e);}  
@@ -88,7 +88,7 @@ public class TeacherDao {
 	            u.setTeach_id(rs.getInt("teach_id"));  
 	            u.setFname(rs.getString("fname"));  
 	            u.setLname(rs.getString("lname"));    
-	            u.setStatus(rs.getInt("status"));  
+	            //u.setStatus(rs.getInt("status"));  
 	            
 	        }  
 	    }catch(Exception e){System.out.println(e);}  

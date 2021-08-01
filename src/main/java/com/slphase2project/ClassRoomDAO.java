@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ClassRoomDAO {
 	
@@ -22,10 +23,10 @@ public class ClassRoomDAO {
 	    try{  
 	        Connection con=getConnection();  
 	        PreparedStatement ps=con.prepareStatement(  
-	"insert into classrooms(class_level, section, status) values(?,?,?)");  
+	"insert into classrooms(class_level, section) values(?,?)");  
 	        ps.setInt(1,u.getClass_level());  
 	        ps.setString(2,u.getSection());  
-	        ps.setInt(3,u.getStatus());  
+	        //ps.setInt(3,u.getStatus());  
 	        status=ps.executeUpdate();  
 	    }catch(Exception e){System.out.println(e);}  
 	    return status;  
@@ -35,12 +36,13 @@ public class ClassRoomDAO {
 	    try{  
 	        Connection con=getConnection();  
 	        PreparedStatement ps=con.prepareStatement(  
-	"update classrooms set class_level=?,section=?,status=? where classroom_id=?"); 
+	"update classrooms set class_level=?,section=? where classroom_id=?"); 
 	        
 	        ps.setInt(1,u.getClass_level());  
 	        ps.setString(2,u.getSection());
-	        ps.setInt(3,u.getStatus());
-	        ps.setInt(4,u.getClassroom_id()); 
+	        //ps.setInt(3,u.getStatus());
+	        ps.setInt(3,u.getClassroom_id()); 
+	        status=ps.executeUpdate();  
 
 	    }catch(Exception e){System.out.println(e);}  
 	    return status;  
@@ -49,7 +51,7 @@ public class ClassRoomDAO {
 	    int status=0;  
 	    try{  
 	        Connection con=getConnection();  
-	        PreparedStatement ps=con.prepareStatement("delete from classrooms where classroom_id=?");  
+	        PreparedStatement ps=con.prepareStatement("update classrooms set status = 0 where classroom_id=?");  
 	        ps.setInt(1,u.getClassroom_id());  
 	        status=ps.executeUpdate();  
 	    }catch(Exception e){System.out.println(e);}  
@@ -61,19 +63,21 @@ public class ClassRoomDAO {
 	      
 	    try{  
 	        Connection con=getConnection();  
-	        PreparedStatement ps=con.prepareStatement("select * from classrooms");  
+	        PreparedStatement ps=con.prepareStatement("select * from classrooms where status = 1");  
 	        ResultSet rs=ps.executeQuery();  
 	        while(rs.next()){  
 	        	ClassRoom u=new ClassRoom();  
 	            u.setClassroom_id(rs.getInt("classroom_id"));  
 	            u.setClass_level(rs.getInt("class_level"));  
 	            u.setSection(rs.getString("section"));   
-	            u.setStatus(rs.getInt("status"));  
+	            //u.setStatus(rs.getInt("status"));  
 	            list.add(u);  
 	        }  
 	    }catch(Exception e){System.out.println(e);}  
 	    return list;  
 	}  
+	
+	
 	public static ClassRoom getRecordById(int classroom_id){  
 		ClassRoom u=null;  
 	    try{  
@@ -86,7 +90,7 @@ public class ClassRoomDAO {
 	            u.setClassroom_id(rs.getInt("classroom_id"));  
 	            u.setClass_level(rs.getInt("class_level"));  
 	            u.setSection(rs.getString("section"));    
-	            u.setStatus(rs.getInt("status"));  
+	            //u.setStatus(rs.getInt("status"));  
 	            
 	        }  
 	    }catch(Exception e){System.out.println(e);}  

@@ -8,6 +8,10 @@ public class Classes {
 	private int subject_id;
 	private int teacher_id;
 	
+	private String name;
+	private String fname;
+	private String lname;
+	
 	public int getClass_id() {
 		return class_id;
 	}
@@ -38,6 +42,26 @@ public class Classes {
 	public void setTeacher_id(int teacher_id) {
 		this.teacher_id = teacher_id;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getFname() {
+		return fname;
+	}
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+	public String getLname() {
+		return lname;
+	}
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+	
+	
 	
 	
 	

@@ -17,9 +17,7 @@ Teacher u=TeacherDao.getRecordById(Integer.parseInt(teach_id));
 <tr><td>First Name:</td><td>  
 <input type="text" name="fname" value="<%= u.getFname()%>" required="required"/></td></tr>
 <tr><td>Last Name:</td><td>   
-<input type="text" name="lname" value="<%= u.getLname()%>" required="required"/></td></tr>
-<tr><td>Status:</td><td>
-<input type="number" name="status" min="0" max="1" value="<%= u.getStatus()%>" required="required"/></td></tr>   
+<input type="text" name="lname" value="<%= u.getLname()%>" required="required"/></td></tr> 
 <tr><td colspan="2"><input type="submit" class="btn btn-primary" value="Edit Teacher"/></td></tr>  
 </table>  
 </form>  

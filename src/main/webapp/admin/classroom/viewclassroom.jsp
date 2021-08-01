@@ -19,11 +19,10 @@ request.setAttribute("list",list);
 %>  
   
 <table class="table table-bordered table-striped" border="1" width="90%"> 
-<tr><th>ID</th><th>Level</th><th>Section</th><th>Status</th> 
+<tr><th>ID</th><th>Level</th><th>Section</th>
 <th>Modify</th><th>Remove</th></tr>  
 <c:forEach items="${list}" var="u">  
 <tr><td>${u.getClassroom_id()}</td><td>${u.getClass_level()}</td><td>${u.getSection()}</td>  
-<td>${u.getStatus()}</td>
 <td><button type="button" class="btn btn-primary"><a href="editclassroomform.jsp?classroom_id=${u.getClassroom_id()}">Edit</a></button></td>  
 <td><button type="button" class="btn btn-danger"><a href="deleteclassroom.jsp?classroom_id=${u.getClassroom_id()}">Delete</a></button></td></tr>  
 </c:forEach>  

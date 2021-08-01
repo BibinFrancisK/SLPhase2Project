@@ -7,7 +7,6 @@
 
   
 <p>Class successfully saved!</p>  
-<jsp:include page="classesform.html"></jsp:include>  
   
 </body>  
 </html> 

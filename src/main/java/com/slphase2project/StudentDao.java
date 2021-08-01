@@ -21,12 +21,12 @@ public class StudentDao {
 	    try{  
 	        Connection con=getConnection();  
 	        PreparedStatement ps=con.prepareStatement(  
-	"insert into students(fname, lname, class, section, status) values(?,?,?,?,?)");  
+	"insert into students(fname, lname, class, section) values(?,?,?,?)");  
 	        ps.setString(1,u.getFname());  
 	        ps.setString(2,u.getLname());  
 	        ps.setInt(3,u.getClass_name());  
 	        ps.setString(4,u.getSection());  
-	        ps.setInt(5,u.getStatus());  
+	        //ps.setInt(5,u.getStatus());  
 	        status=ps.executeUpdate();  
 	    }catch(Exception e){System.out.println(e);}  
 	    return status;  
@@ -36,14 +36,14 @@ public class StudentDao {
 	    try{  
 	        Connection con=getConnection();  
 	        PreparedStatement ps=con.prepareStatement(  
-	"update students set fname=?,lname=?,class=?,section=?,status=? where stud_id=?"); 
+	"update students set fname=?,lname=?,class=?,section=? where stud_id=?"); 
 	        
 	        ps.setString(1,u.getFname());  
 	        ps.setString(2,u.getLname());  
 	        ps.setInt(3,u.getClass_name());  
 	        ps.setString(4,u.getSection());  
-	        ps.setInt(5,u.getStatus());  
-	        ps.setInt(6,u.getStud_id());  
+	        //ps.setInt(5,u.getStatus());  
+	        ps.setInt(5,u.getStud_id());  
 	        status=ps.executeUpdate(); 
 
 	    }catch(Exception e){System.out.println(e);}  
@@ -53,7 +53,7 @@ public class StudentDao {
 	    int status=0;  
 	    try{  
 	        Connection con=getConnection();  
-	        PreparedStatement ps=con.prepareStatement("delete from students where stud_id=?");  
+	        PreparedStatement ps=con.prepareStatement("update students set status = 0 where stud_id=?");  
 	        ps.setInt(1,u.getStud_id());  
 	        status=ps.executeUpdate();  
 	    }catch(Exception e){System.out.println(e);}  
@@ -65,7 +65,7 @@ public class StudentDao {
 	      
 	    try{  
 	        Connection con=getConnection();  
-	        PreparedStatement ps=con.prepareStatement("select * from students");  
+	        PreparedStatement ps=con.prepareStatement("select * from students where status = 1");  
 	        ResultSet rs=ps.executeQuery();  
 	        while(rs.next()){  
 	            Student u=new Student();  
@@ -96,7 +96,7 @@ public class StudentDao {
 	            u.setLname(rs.getString("lname"));  
 	            u.setClass_name(rs.getInt("class"));  
 	            u.setSection(rs.getString("section"));  
-	            u.setStatus(rs.getInt("status"));  
+	            //u.setStatus(rs.getInt("status"));  
 	            
 	        }  
 	    }catch(Exception e){System.out.println(e);}  
